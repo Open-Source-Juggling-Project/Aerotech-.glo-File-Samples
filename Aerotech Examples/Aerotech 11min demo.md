@@ -72,129 +72,132 @@ L,5
     E
 E                         ;End of 1st loop	
 
-; [Up to here in ediitng]
 ; Simple loops
 
-L, 100						; Loop 100 times flashing red/green
-	C, 255, 0, 0			; Red full brightness
-	D, 4					; Pause 0.04 second
-	C, 0, 255, 0			; Green full brightness (red off)
-	D, 4					; Pause 1 second
+L, 100              ; Loop 100 times flashing red/green
+  C, 255, 0, 0      ; Red full brightness
+  D, 4              ; Pause 0.04 seconds
+  C, 0, 255, 0      ; Green full brightness (red off)
+  D, 4              ; Pause 0.04 seconds
 E
 
-L, 160						; Loop 160 times
-	C, 255, 0, 255			; Cyan full brightness
-	D, 4
-	C, 0, 0, 255			; Green full brightness
-	D,4
+L, 160              ; Loop 160 times
+  C, 255, 0, 255    ; Cyan full brightness
+  D, 4              ; Pause 0.04 seconds
+  C, 0, 0, 255      ; Green full brightness
+  D, 4              ; Pause 0.04 seconds
 E
 
-L, 160
-	C, 255, 0, 0			; Red
-	D, 4
-	C, 255, 255, 0			;Purple
-	D, 4
+L, 160              ; Loop 160 times
+  C, 255, 0, 0      ; Red
+  D, 4              ; Pause 0.04 seconds
+  C, 255, 255, 0    ; Purple
+  D, 4              ; Pause 0.04 seconds
 E
 
-L, 160						
-	C, 0, 255, 255			; Yellow
-	D, 4
-	C, 0, 0, 0
-	D,4
-E			; End loop
+L, 160              ; Loop 160 times					
+  C, 0, 255, 255    ; Yellow
+  D, 4              ; Pause 0.04 seconds
+  C, 0, 0, 0        ; All off
+  D, 4              ; Pause 0.04 seconds
+E                   ; End loop
 
-L, 160
-	C, 200, 0, 200
-	D, 4
-	C, 0, 0, 0
-	D, 4
+L, 160              ; Loop 160 times
+  C, 200, 0, 200
+  D, 4              ; Pause 0.04 seconds
+  C, 0, 0, 0        ; All off
+  D, 4              ; Pause 0.04 seconds
 E
 
-L, 160
-	C, 51, 255, 0
-	D, 4
-	C, 0, 0, 0
-	D, 4
+L, 160              ; Loop 160 times
+  C, 51, 255, 0
+  D, 4              ; Pause 0.04 seconds
+  C, 0, 0, 0        ; All off
+  D, 4              ; Pause 0.04 seconds
 E
 
 SUB, Rainbow_Fast
 
-;Examples of individual colour control using RGB command
-L, 40		;Loop 40 times
+; Examples of individual colour control using RGB command
+
+L, 40       ; Loop 40 times
 	
-	R, 255	;Red Max
-	D, 10	;0.5 sec
-	R, 0	;Red Off
+  R, 255    ; Red Max
+  D, 10     ; 0.5 sec
+  R, 0      ; Red Off
 
-	G, 255	;Green Max
-	D, 10	;0.5 sec
-	G, 0	;Green Off
+  G, 255    ; Green Max
+  D, 10     ; 0.5 sec
+  G, 0      ; Green Off
 
-	B, 255	;Blue Max
-	D, 10	;0.5 sec
-	;B, 0	;Blue Off
+  B, 255    ; Blue Max
+  D, 10     ; 0.5 sec
+	B, 0      ; Blue Off
 
-	R, 255	;Red Max
-	;Red+Blue=Majenta
-	B, 255	;Blue Max
-	D, 10	;0.5 sec
-	B, 0	;Blue Off
-	;Green+Red=Yellow
-	G, 255	;Green Max
-	D, 10	;0.5 sec
+  R, 255    ; Red Max
+            ; Red+Blue=Majenta
+  B, 255    ; Blue Max
+  D, 10     ; 0.5 sec
+  B, 0      ; Blue Off
+            ; Green+Red=Yellow
+  G, 255    ; Green Max
+  D, 10     ; 0.5 sec
 
-	R, 0	;Red Off
-						;Blue+Green=Cyan
-	B, 255	;Blue Max
-	D, 10	;0.5 sec
-	B, 0	;Blue Off
+  R, 0      ;Red Off
+            ;Blue+Green=Cyan
+  B, 255    ;Blue Max
+  D, 10     ;0.5 sec
+  B, 0      ;Blue Off
 
-	G, 0	;Green off
+  G, 0      ;Green off
 
-	R, 51	;Red 51 brightness
-	D, 10
+  R, 51     ;Red 51 brightness
+  D, 10
 
-	G, 255
-	D, 10
+  G, 255
+  D, 10
 
-	B, 255
-	D, 10
+  B, 255
+  D, 10
 
-	B, 0	;All colours off or C,0,0,0 would use less commands and save a little space
-	G, 0
-	R, 0
-	
-	D, 10
+  B, 0      ; All colours off or C,0,0,0 would use less commands and save a little space
+  G, 0
+  R, 0
+
+  D, 10
 E
-
 
 C, 255, 0, 0
+
 SUB, Rainbow_Slow
+
 RAMP, 255,255,255,1000
+
 RAMP, 0,0,0,1000
 
-END		;End of program
-;Define subroutines after END
+END		      ; End of program
 
-DEFSUB, Rainbow_Fast		;Start of subroutine and name
-L, 20				; Loop 10 times
-RAMP, 255, 255, 0, 100		; Ramp up the Green leaving red on full to give YELLOW
-RAMP, 0, 255, 0, 100		; Ramp down the Red and leave the green to make GREEN
-RAMP, 0, 255, 255, 100		; Ramp up the Blue and leave the green on full to make CYAN
-RAMP, 0, 0, 255, 100		; Ramp down the green and leave the blue to make BLUE
-RAMP, 255, 0, 255, 100		; Ramp up the red and leave the blue to make MAGENTA
-RAMP, 255, 0, 0, 100		; Ramp down the blue and leave the red to make RED again!
-E
-ENDSUB				;End of subroutine
+; Define subroutines after END
 
-DEFSUB, Rainbow_Slow		;Start of subroutine and name
-L, 2				; Loop 10 times
-RAMP, 255, 255, 0, 1000		; Ramp up the Green leaving red on full to give YELLOW
-RAMP, 0, 255, 0, 1000		; Ramp down the Red and leave the green to make GREEN
-RAMP, 0, 255, 255, 1000		; Ramp up the Blue and leave the green on full to make CYAN
-RAMP, 0, 0, 255, 1000		; Ramp down the green and leave the blue to make BLUE
-RAMP, 255, 0, 255, 1000		; Ramp up the red and leave the blue to make MAGENTA
-RAMP, 255, 0, 0, 1000		; Ramp down the blue and leave the red to make RED again!
-E
-ENDSUB				;End of subroutine
+DEFSUB, Rainbow_Fast      ; Start of subroutine and name
+L, 20                     ; Loop 10 times
+RAMP, 255, 255, 0, 100    ; Ramp up the Green leaving red on full to give YELLOW
+RAMP, 0, 255, 0, 100      ; Ramp down the Red and leave the green to make GREEN
+RAMP, 0, 255, 255, 100    ; Ramp up the Blue and leave the green on full to make CYAN
+RAMP, 0, 0, 255, 100      ; Ramp down the green and leave the blue to make BLUE
+RAMP, 255, 0, 255, 100    ; Ramp up the red and leave the blue to make MAGENTA
+RAMP, 255, 0, 0, 100      ; Ramp down the blue and leave the red to make RED again!
+E                         ; End loop
+ENDSUB                    ; End of subroutine
+
+DEFSUB, Rainbow_Slow      ; Start of subroutine and name
+L, 2                      ; Loop 10 times
+RAMP, 255, 255, 0, 1000   ; Ramp up the Green leaving red on full to give YELLOW
+RAMP, 0, 255, 0, 1000     ; Ramp down the Red and leave the green to make GREEN
+RAMP, 0, 255, 255, 1000   ; Ramp up the Blue and leave the green on full to make CYAN
+RAMP, 0, 0, 255, 1000     ; Ramp down the green and leave the blue to make BLUE
+RAMP, 255, 0, 255, 1000   ; Ramp up the red and leave the blue to make MAGENTA
+RAMP, 255, 0, 0, 1000     ; Ramp down the blue and leave the red to make RED again!
+E                         ; End loop
+ENDSUB                    ;End of subroutine
 ```
