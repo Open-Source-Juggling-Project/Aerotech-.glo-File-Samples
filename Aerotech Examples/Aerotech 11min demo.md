@@ -1,0 +1,200 @@
+Corrections have been made to the notes from the original file.
+
+Spaces have been added where appropriate. 
+
+```
+; Aerotech Projects Demo sequence of approximately 10mins
+
+; Back stage count down from 3 start music on 3rd flash
+
+; Examples of colour control
+
+C, 50,0,0     ; Quick flash for count of 3
+D, 10         ; Delay on for 0.1s
+C, 0, 0, 0    ; OFF
+D, 100        ; Delay 1 sec
+
+C, 0, 50, 0   ; Quick flash for count of 2
+D, 10         ; Delay on for 0.1s
+C, 0, 0, 0    ; OFF
+D, 100        ; Delay 1 sec
+
+C, 0, 0, 50   ; Quick flash to start music for synchcronising
+D, 10         ; Delay on for 0.1s
+C, 0, 0, 0    ; OFF
+
+D, 1000       ; Delay 10 seconds to get on stage
+
+; Example of Ramps
+
+RAMP, 255, 0, 0, 1000       ; Ramp to red over 10 seconds
+D, 2000                     ; Delay 20, Stay full brightness for 20 seconds
+RAMP, 0, 255, 0, 1000       ; Ramp Red down and green up over 10 seconds
+D, 1500                     ; Delay 15, Stay on full for 15 seconds
+RAMP, 0, 0, 255, 1000       ; Ramp down green up blue over 10
+D, 1000                     ; Delay 10
+
+RAMP, 255, 0, 255, 1000     ; Leave blue up red over 10
+RAMP, 255, 255, 0, 1000     ; Leave red, green up, down blue
+RAMP, 255, 255, 255, 1000   ; To white
+
+; Example of Adding a Sub-Sequence
+
+SUB, Rainbow_Fast           ; Go to Rainbow_Fast which is defined at the very end of the program
+
+; Examples of loops
+
+; Nested loops.
+
+L,2                       ; Start of 1st Loop
+  L, 10
+    C, 255, 255, 255      ; Set Red, blue, green to full on at 255 (white)
+    D, 10                 ; Delay on white for 0.1s	
+    C, 0, 0, 0            ; All off
+    D, 10                 ; Delay for 0.1s
+  E
+	
+  L, 10
+    C, 255, 255, 255      ; Set Red, blue, green to full on at 255 (white)
+    D, 5                  ; Delay on white for 0.05s	
+    C, 0, 0, 0            ; All off
+    D, 5                  ; Delay for 0.05s
+  E
+E	
+
+L,5 
+  RAMP, 255,255,255,500   ; Increase white from 0 to full over 5s
+    L, 120                ; 120 Rapid white flashes
+      C, 255, 255, 255    ; Set Red, blue, green to full on at 255 (white)
+      D, 2                ; Delay on white for 0.02s	
+      C, 0, 0, 0          ; All off
+      D, 2                ; Delay for 0.02s
+    E
+E                         ;End of 1st loop	
+
+; [Up to here in ediitng]
+; Simple loops
+
+L, 100						; Loop 100 times flashing red/green
+	C, 255, 0, 0			; Red full brightness
+	D, 4					; Pause 0.04 second
+	C, 0, 255, 0			; Green full brightness (red off)
+	D, 4					; Pause 1 second
+E
+
+L, 160						; Loop 160 times
+	C, 255, 0, 255			; Cyan full brightness
+	D, 4
+	C, 0, 0, 255			; Green full brightness
+	D,4
+E
+
+L, 160
+	C, 255, 0, 0			; Red
+	D, 4
+	C, 255, 255, 0			;Purple
+	D, 4
+E
+
+L, 160						
+	C, 0, 255, 255			; Yellow
+	D, 4
+	C, 0, 0, 0
+	D,4
+E			; End loop
+
+L, 160
+	C, 200, 0, 200
+	D, 4
+	C, 0, 0, 0
+	D, 4
+E
+
+L, 160
+	C, 51, 255, 0
+	D, 4
+	C, 0, 0, 0
+	D, 4
+E
+
+SUB, Rainbow_Fast
+
+;Examples of individual colour control using RGB command
+L, 40		;Loop 40 times
+	
+	R, 255	;Red Max
+	D, 10	;0.5 sec
+	R, 0	;Red Off
+
+	G, 255	;Green Max
+	D, 10	;0.5 sec
+	G, 0	;Green Off
+
+	B, 255	;Blue Max
+	D, 10	;0.5 sec
+	;B, 0	;Blue Off
+
+	R, 255	;Red Max
+	;Red+Blue=Majenta
+	B, 255	;Blue Max
+	D, 10	;0.5 sec
+	B, 0	;Blue Off
+	;Green+Red=Yellow
+	G, 255	;Green Max
+	D, 10	;0.5 sec
+
+	R, 0	;Red Off
+						;Blue+Green=Cyan
+	B, 255	;Blue Max
+	D, 10	;0.5 sec
+	B, 0	;Blue Off
+
+	G, 0	;Green off
+
+	R, 51	;Red 51 brightness
+	D, 10
+
+	G, 255
+	D, 10
+
+	B, 255
+	D, 10
+
+	B, 0	;All colours off or C,0,0,0 would use less commands and save a little space
+	G, 0
+	R, 0
+	
+	D, 10
+E
+
+
+C, 255, 0, 0
+SUB, Rainbow_Slow
+RAMP, 255,255,255,1000
+RAMP, 0,0,0,1000
+
+END		;End of program
+;Define subroutines after END
+
+DEFSUB, Rainbow_Fast		;Start of subroutine and name
+L, 20				; Loop 10 times
+RAMP, 255, 255, 0, 100		; Ramp up the Green leaving red on full to give YELLOW
+RAMP, 0, 255, 0, 100		; Ramp down the Red and leave the green to make GREEN
+RAMP, 0, 255, 255, 100		; Ramp up the Blue and leave the green on full to make CYAN
+RAMP, 0, 0, 255, 100		; Ramp down the green and leave the blue to make BLUE
+RAMP, 255, 0, 255, 100		; Ramp up the red and leave the blue to make MAGENTA
+RAMP, 255, 0, 0, 100		; Ramp down the blue and leave the red to make RED again!
+E
+ENDSUB				;End of subroutine
+
+DEFSUB, Rainbow_Slow		;Start of subroutine and name
+L, 2				; Loop 10 times
+RAMP, 255, 255, 0, 1000		; Ramp up the Green leaving red on full to give YELLOW
+RAMP, 0, 255, 0, 1000		; Ramp down the Red and leave the green to make GREEN
+RAMP, 0, 255, 255, 1000		; Ramp up the Blue and leave the green on full to make CYAN
+RAMP, 0, 0, 255, 1000		; Ramp down the green and leave the blue to make BLUE
+RAMP, 255, 0, 255, 1000		; Ramp up the red and leave the blue to make MAGENTA
+RAMP, 255, 0, 0, 1000		; Ramp down the blue and leave the red to make RED again!
+E
+ENDSUB				;End of subroutine
+```
