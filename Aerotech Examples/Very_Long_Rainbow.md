@@ -1,0 +1,25 @@
+```
+RAMP, 255, 0, 0,1000
+
+L, 30
+RAMP, 255, 255, 0, 1000
+RAMP, 0, 255, 0, 1000
+RAMP, 0, 255, 255, 1000
+RAMP, 0, 0, 255, 1000
+RAMP, 255, 0, 255, 1000
+RAMP, 255, 0, 0, 1000     ; Ramp down the blue and leave the red to make RED again!
+E
+
+L, 60
+RAMP, 155, 155, 0, 1000
+RAMP, 0, 155, 0, 1000
+RAMP, 0, 155, 155, 1000
+RAMP, 0, 0, 155, 1000
+RAMP, 155, 0, 155, 1000
+RAMP, 155, 0, 0, 1000
+E
+
+RAMP, 0, 0, 0, 1000
+
+END
+```
