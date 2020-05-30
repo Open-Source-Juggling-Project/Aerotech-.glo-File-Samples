@@ -132,7 +132,7 @@ L, 40       ; Loop 40 times
 
   B, 255    ; Blue Max
   D, 10     ; 0.5 sec
-	B, 0      ; Blue Off
+  B, 0      ; Blue Off
 
   R, 255    ; Red Max
             ; Red+Blue=Majenta
@@ -143,15 +143,15 @@ L, 40       ; Loop 40 times
   G, 255    ; Green Max
   D, 10     ; 0.5 sec
 
-  R, 0      ;Red Off
-            ;Blue+Green=Cyan
-  B, 255    ;Blue Max
-  D, 10     ;0.5 sec
-  B, 0      ;Blue Off
+  R, 0      ; Red Off
+            ; Blue+Green=Cyan
+  B, 255    ; Blue Max
+  D, 10     ; 0.5 sec
+  B, 0      ; Blue Off
 
-  G, 0      ;Green off
+  G, 0      ; Green off
 
-  R, 51     ;Red 51 brightness
+  R, 51     ; Red 51 brightness
   D, 10
 
   G, 255
@@ -175,7 +175,7 @@ RAMP, 255,255,255,1000
 
 RAMP, 0,0,0,1000
 
-END		      ; End of program
+END         ; End of program
 
 ; Define subroutines after END
 
@@ -199,5 +199,5 @@ RAMP, 0, 0, 255, 1000     ; Ramp down the green and leave the blue to make BLUE
 RAMP, 255, 0, 255, 1000   ; Ramp up the red and leave the blue to make MAGENTA
 RAMP, 255, 0, 0, 1000     ; Ramp down the blue and leave the red to make RED again!
 E                         ; End loop
-ENDSUB                    ;End of subroutine
+ENDSUB                    ; End of subroutine
 ```
